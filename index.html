@@ -1989,10 +1989,8 @@
         <h2 class="settings-section-title">Dados</h2>
         <p class="settings-section-description">Entenda onde suas informações ficam guardadas.</p>
         <button class="settings-action" type="button" onclick="openDataInfoModal()">Ver informações dos dados</button>
-        <div class="settings-future-card" style="margin-top:12px;margin-bottom:0">
-          <span class="settings-future-label">Backup e transferência · Em breve</span>
-          <p>Em breve você poderá guardar uma cópia dos seus dados para transferir o Caixinhas para outro aparelho.</p>
-        </div>
+        <button class="settings-action" type="button" style="margin-top:10px" onclick="openBackupModal()">Backup e transferência</button>
+        <p class="settings-section-description" style="margin:10px 0 0">Guarde uma cópia dos dados ou leve o Caixinhas para outro aparelho.</p>
       </section>
 
       <section class="settings-section-card">
@@ -2021,6 +2019,27 @@
     <!-- =========================================================
          MODAIS DAS CONFIGURAÇÕES
          ========================================================= -->
+    <div id="backupModal" class="settings-modal-backdrop" aria-hidden="true" onclick="closeSettingsModal(event,'backupModal')">
+      <div class="settings-modal-card" role="dialog" aria-modal="true" aria-labelledby="backupTitle">
+        <h3 id="backupTitle">Backup e transferência</h3>
+        <p>A cópia inclui todos os perfis, metas, caixinhas, históricos e preferências deste aparelho (e os PINs).</p>
+        <div class="settings-modal-actions" style="margin-top:12px;flex-direction:column">
+          <button class="settings-modal-primary" type="button" onclick="caixinhasExportFile()">Salvar arquivo de backup</button>
+          <button class="settings-modal-secondary" type="button" onclick="caixinhasExportText()">Copiar backup como texto</button>
+        </div>
+        <hr class="settings-divider">
+        <h3 style="font-size:1rem">Restaurar uma cópia</h3>
+        <p>Escolha o arquivo de backup ou cole o texto copiado. Isso substitui os dados deste aparelho.</p>
+        <input id="backupFileInput" type="file" accept=".json,.txt,application/json,text/plain" style="width:100%;margin:6px 0;font-size:.8rem">
+        <textarea id="backupTextArea" rows="4" placeholder="Ou cole aqui o texto do backup" style="width:100%;border:1px solid var(--border-light);border-radius:14px;background:var(--bg-cream);color:var(--text-main);padding:10px;font-size:.75rem;resize:vertical"></textarea>
+        <div id="backupStatus" role="status" style="min-height:1.2em;margin:8px 0;font-size:.8rem;font-weight:700;color:var(--text-sub)"></div>
+        <div class="settings-modal-actions" style="flex-direction:column">
+          <button id="backupRestoreBtn" class="settings-modal-primary" type="button" onclick="caixinhasRestore()">Restaurar</button>
+          <button class="settings-modal-secondary" type="button" onclick="closeSettingsModal(null,'backupModal')">Fechar</button>
+        </div>
+      </div>
+    </div>
+
     <div id="dataInfoModal" class="settings-modal-backdrop" aria-hidden="true" onclick="closeSettingsModal(event,'dataInfoModal')">
       <div class="settings-modal-card" role="dialog" aria-modal="true" aria-labelledby="dataInfoTitle">
         <h3 id="dataInfoTitle">Seus dados neste aparelho</h3>
@@ -5001,6 +5020,77 @@
         armTimer = setTimeout(pushSentinel, 2000);
       });
     }
+  })();
+  </script>
+
+  <script>
+  /* BACKUP E TRANSFERÊNCIA */
+  (function(){
+    function $(id){ return document.getElementById(id); }
+    function status(msg, bad){ var el=$('backupStatus'); if(!el) return; el.textContent=msg; el.style.color = bad ? '#C0525F' : 'var(--text-sub)'; }
+    function build(){
+      var data=null, settings=null;
+      try { data = localStorage.getItem(CAIXINHAS_STORAGE_KEY); settings = localStorage.getItem(CAIXINHAS_SETTINGS_KEY); } catch(e){}
+      return JSON.stringify({app:'caixinhas', version:1, exportedAt:new Date().toISOString(), data:data, settings:settings});
+    }
+    function hasData(){ try { return !!localStorage.getItem(CAIXINHAS_STORAGE_KEY); } catch(e){ return false; } }
+    var armed=false;
+    window.openBackupModal=function(){
+      armed=false; var b=$('backupRestoreBtn'); if(b) b.textContent='Restaurar';
+      status(''); $('backupTextArea').value=''; $('backupFileInput').value='';
+      var m=$('backupModal'); m.classList.add('show'); m.setAttribute('aria-hidden','false');
+    };
+    window.caixinhasExportFile=async function(){
+      if(!hasData()){ status('Ainda não há dados para guardar.', true); return; }
+      var text=build(), name='caixinhas-backup-'+new Date().toISOString().slice(0,10)+'.json';
+      try {
+        var file=new File([text], name, {type:'application/json'});
+        if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file], title:'Backup do Caixinhas'}); status('Backup pronto para compartilhar.'); return; }
+      } catch(e){ if(e && e.name==='AbortError') return; }
+      try {
+        var url=URL.createObjectURL(new Blob([text],{type:'application/json'}));
+        var a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+        status('Arquivo enviado para Downloads. Se não aparecer, use "Copiar backup como texto".');
+      } catch(e){ status('Não consegui salvar o arquivo aqui. Use "Copiar backup como texto".', true); }
+    };
+    window.caixinhasExportText=async function(){
+      if(!hasData()){ status('Ainda não há dados para guardar.', true); return; }
+      var text=build();
+      try { await navigator.clipboard.writeText(text); status('Copiado! Cole em um lugar seguro (ex.: uma conversa só sua).'); return; } catch(e){}
+      var ta=$('backupTextArea'); ta.value=text; ta.focus(); ta.select();
+      try { if(document.execCommand('copy')){ status('Copiado! Cole em um lugar seguro (ex.: uma conversa só sua).'); return; } } catch(e){}
+      status('O texto está na caixa abaixo: selecione tudo e copie.');
+    };
+    $('backupFileInput') && $('backupFileInput').addEventListener('change', function(){
+      var f=this.files && this.files[0]; if(!f) return;
+      var r=new FileReader();
+      r.onload=function(){ $('backupTextArea').value=String(r.result||''); armed=false; $('backupRestoreBtn').textContent='Restaurar'; status('Arquivo lido. Toque em Restaurar.'); };
+      r.onerror=function(){ status('Não consegui ler esse arquivo.', true); };
+      r.readAsText(f);
+    });
+    function parse(text){
+      var obj; try { obj=JSON.parse(text.trim()); } catch(e){ return null; }
+      if(obj && obj.app==='caixinhas' && typeof obj.data==='string'){
+        try { var d=JSON.parse(obj.data); if(!d || !Array.isArray(d.profiles)) return null; } catch(e){ return null; }
+        return {data:obj.data, settings: typeof obj.settings==='string' ? obj.settings : null};
+      }
+      return null;
+    }
+    window.caixinhasRestore=function(){
+      var text=$('backupTextArea').value;
+      if(!text.trim()){ status('Escolha um arquivo ou cole o texto do backup.', true); return; }
+      var parsed=parse(text);
+      if(!parsed){ status('Esse conteúdo não parece um backup do Caixinhas.', true); return; }
+      var btn=$('backupRestoreBtn');
+      if(!armed){ armed=true; btn.textContent='Confirmar: substituir os dados deste aparelho'; status('Atenção: os dados atuais deste aparelho serão trocados pelo backup.', true); return; }
+      try {
+        localStorage.setItem(CAIXINHAS_STORAGE_KEY, parsed.data);
+        if(parsed.settings) localStorage.setItem(CAIXINHAS_SETTINGS_KEY, parsed.settings); else localStorage.removeItem(CAIXINHAS_SETTINGS_KEY);
+      } catch(e){ status('Não consegui gravar os dados (o armazenamento pode estar cheio).', true); armed=false; btn.textContent='Restaurar'; return; }
+      status('Restaurado! Reabrindo o app...');
+      setTimeout(function(){ location.reload(); }, 600);
+    };
   })();
   </script>
 </body>
