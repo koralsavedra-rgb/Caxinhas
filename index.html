@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Caixinhas - Bem-vindo</title>
 
   <!-- Fontes arredondadas e acolhedoras (Fredoka e Quicksand) -->
@@ -56,7 +56,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Quicksand', sans-serif;
+      font-family: 'Quicksand', system-ui, -apple-system, Roboto, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -107,9 +107,11 @@
       justify-content: space-between;
       height: 100%;
       width: 100%;
-      flex-grow: 1;
+      flex: 1 1 auto;
+      min-height: 0;
       text-align: center;
       animation: fadeIn 0.4s ease-out;
+      overflow: hidden;
     }
 
     .splash-brand {
@@ -132,7 +134,7 @@
     }
 
     .brand-title {
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 2.2rem;
       font-weight: 700;
       color: var(--text-main);
@@ -161,7 +163,7 @@
     }
 
     .splash-message p {
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 1.25rem;
       font-weight: 500;
       color: var(--text-main);
@@ -172,7 +174,7 @@
       display: block;
       margin-top: 6px;
       font-size: 0.88rem;
-      font-family: 'Quicksand', sans-serif;
+      font-family: 'Quicksand', system-ui, -apple-system, Roboto, sans-serif;
       color: var(--text-sub);
       font-weight: 600;
     }
@@ -184,7 +186,7 @@
       border-radius: 29px;
       background-color: var(--primary-pink);
       color: #FFFFFF;
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 1.15rem;
       font-weight: 600;
       cursor: pointer;
@@ -231,7 +233,7 @@
     }
 
     .header h1 {
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 1.45rem;
       color: var(--text-main);
       font-weight: 600;
@@ -307,7 +309,7 @@
     .mascot-card[data-mascot="deli"] .avatar-wrapper { background-color: var(--bg-deli); }
 
     .mascot-name {
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 1.05rem;
       font-weight: 600;
       color: var(--text-main);
@@ -356,7 +358,7 @@
 
     .input-label {
       display: block;
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 0.95rem;
       font-weight: 500;
       color: var(--text-main);
@@ -400,7 +402,7 @@
       border-radius: 28px;
       background-color: #E2D9DC;
       color: #FFFFFF;
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 1.1rem;
       font-weight: 600;
       cursor: not-allowed;
@@ -443,7 +445,7 @@
     }
 
     .toast-modal h3 {
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       color: var(--text-main);
       font-size: 1.1rem;
       margin-bottom: 4px;
@@ -488,7 +490,7 @@
     }
 
     .goals-greeting h1 {
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 1.65rem;
       line-height: 1.2;
       font-weight: 600;
@@ -535,7 +537,7 @@
     }
 
     .goals-title-block h2 {
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       color: var(--text-main);
       font-size: 1.42rem;
       font-weight: 600;
@@ -576,7 +578,7 @@
     }
 
     .empty-goals h3 {
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       color: var(--text-main);
       font-size: 1.28rem;
       font-weight: 600;
@@ -599,7 +601,7 @@
       border-radius: 27px;
       background: var(--primary-pink);
       color: #FFFFFF;
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 1.03rem;
       font-weight: 600;
       cursor: pointer;
@@ -755,7 +757,7 @@
       justify-content: center;
       background: linear-gradient(135deg, #FFF2F4, #F2EFFA);
       color: #B9A8AF;
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 0.9rem;
       margin-bottom: 12px;
     }
@@ -774,7 +776,7 @@
 
     .goal-name {
       color: var(--text-main);
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 1.1rem;
       font-weight: 600;
       line-height: 1.25;
@@ -801,7 +803,7 @@
 
     .goal-values strong {
       color: var(--text-main);
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 0.98rem;
       font-weight: 600;
     }
@@ -837,7 +839,7 @@
       flex: 0 0 39px;
       text-align: right;
       color: var(--text-main);
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 0.83rem;
       font-weight: 600;
     }
@@ -856,7 +858,7 @@
       border-radius: 24px;
       background: #FFF9FA;
       color: #A56C78;
-      font-family: 'Fredoka', cursive;
+      font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 0.94rem;
       font-weight: 600;
       cursor: pointer;
@@ -1009,7 +1011,7 @@
     .boxes-companion-avatar{width:42px;height:42px;flex:0 0 42px;border-radius:15px;display:flex;align-items:center;justify-content:center;overflow:hidden}
     .boxes-companion-avatar svg{width:38px;height:38px}
     .boxes-companion-note p{min-width:0;color:#806D74;font-family:'Fredoka',cursive;font-size:.72rem;font-weight:500;line-height:1.35}
-    .boxes-modal-backdrop{position:fixed;inset:0;background:rgba(92,75,81,.25);backdrop-filter:blur(3px);display:flex;align-items:flex-end;justify-content:center;padding:16px;z-index:100;opacity:0;pointer-events:none;transition:opacity .22s ease}
+    .boxes-modal-backdrop{position:fixed;inset:0;background:rgba(92,75,81,.25);display:flex;align-items:flex-end;justify-content:center;padding:16px;z-index:100;opacity:0;pointer-events:none;transition:opacity .22s ease}
     .boxes-modal-backdrop.show{opacity:1;pointer-events:auto}
     .boxes-modal{width:min(390px,100%);background:#FFFDF9;border:1px solid #F0E6E6;border-radius:28px;padding:21px 18px 16px;box-shadow:0 20px 55px rgba(92,75,81,.2);transform:translateY(18px);transition:transform .25s ease}
     .boxes-modal-backdrop.show .boxes-modal{transform:translateY(0)}
@@ -1079,6 +1081,38 @@
     @media (min-width:520px){.boxes-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.screen-goal-boxes{padding-left:4px;padding-right:4px}.saving-box{min-height:132px}}
     @media (min-width:760px){.boxes-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
+    /* =========================================================
+       SPLASH — encaixe fixo no APK/WebView
+       A primeira tela não deve depender de rolagem.
+       ========================================================= */
+    @media (max-height: 850px) {
+      body:not(.goals-mode) .app-container {
+        min-height: calc(100dvh - 32px);
+        height: calc(100dvh - 32px);
+      }
+
+      body:not(.goals-mode) .screen-splash {
+        min-height: 0;
+      }
+
+      body:not(.goals-mode) .splash-brand {
+        margin-top: 8px;
+      }
+
+      body:not(.goals-mode) .splash-illustration {
+        height: min(240px, 30vh);
+        margin: 8px 0;
+      }
+
+      body:not(.goals-mode) .splash-message {
+        margin-bottom: 10px;
+      }
+
+      body:not(.goals-mode) footer {
+        flex-shrink: 0;
+      }
+    }
+
     @media (max-height: 720px) {
       .app-container { min-height: 100vh; border-radius: 28px; }
       .empty-goals { min-height: 330px; }
@@ -1126,7 +1160,7 @@
     .settings-danger-button:hover{background:#FFE5E9;border-color:#D596A4}
 
     /* Modais de configurações: ocultos por padrão para nunca aparecerem sobre outras telas. */
-    .settings-modal-backdrop{position:fixed;inset:0;z-index:220;background:rgba(92,75,81,.28);backdrop-filter:blur(3px);display:flex;align-items:flex-end;justify-content:center;padding:16px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility .2s ease}
+    .settings-modal-backdrop{position:fixed;inset:0;z-index:220;background:rgba(92,75,81,.28);display:flex;align-items:flex-end;justify-content:center;padding:16px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility .2s ease}
     .settings-modal-backdrop.show{opacity:1;visibility:visible;pointer-events:auto}
     .settings-modal-card{width:min(390px,100%);max-height:min(82vh,620px);overflow-y:auto;background:var(--card-bg);border:1px solid var(--border-light);border-radius:28px;padding:21px 18px 17px;box-shadow:0 20px 55px rgba(92,75,81,.2);transform:translateY(18px);transition:transform .22s ease;color:var(--text-main)}
     .settings-modal-backdrop.show .settings-modal-card{transform:translateY(0)}
@@ -1421,6 +1455,27 @@
     .palette-note{margin-top:10px;color:var(--text-sub);font-size:.68rem;font-weight:600;line-height:1.4}
 
     @media (max-width:420px){.palette-choice{min-height:82px;padding:9px}.palette-swatch{height:28px}}
+
+    /* =========================================================
+       AJUSTES PARA APK / ANDROID WEBVIEW
+       ========================================================= */
+    html{height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+    :root{--app-h:100vh}
+    body{min-height:var(--app-h)}
+    /* altura real da janela (WebView erra 100vh) */
+    body.goals-mode .app-container{min-height:var(--app-h);height:auto}
+    body:not(.goals-mode) .app-container{min-height:min(844px,calc(var(--app-h) - 32px))}
+    @media (max-height:850px){
+      body:not(.goals-mode) .app-container{min-height:calc(var(--app-h) - 32px);height:calc(var(--app-h) - 32px)}
+    }
+    /* modais escondidos não participam da pintura */
+    .boxes-modal-backdrop,.settings-modal-backdrop{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;visibility:hidden;transition:opacity .22s ease,visibility 0s linear .22s}
+    .boxes-modal-backdrop.show,.settings-modal-backdrop.show{visibility:visible;transition:opacity .22s ease,visibility 0s}
+    /* barra de baixo sempre fixa e com a largura toda */
+    .main-nav,body.goals-mode .main-nav{position:fixed;left:0;right:0;bottom:0;width:100%;max-width:none;transform:translateZ(0)}
+    /* sem animação de entrada no APK (evita telas pela metade/apagadas) */
+    html.apk *,html.apk *::before,html.apk *::after{animation:none!important}
+    html.apk .main-nav-button,html.apk .saving-box{transition:none!important}
 </style>
 </head>
 <body>
@@ -4851,6 +4906,102 @@
     window.confirmDeleteGoal = confirmDeleteGoal;
     window.closeGoalDeleteModal = closeGoalDeleteModal;
     window.renderCaixinhasGoals = renderGoalsScreen;
+  </script>
+
+  <script>
+  /* =========================================================
+     APK / ANDROID: altura real, modo WebView e BOTÃO VOLTAR
+     ========================================================= */
+  (function(){
+    var ua = navigator.userAgent || '';
+    var isWebView = /; wv\)/.test(ua) || /Version\/[\d.]+ Chrome/.test(ua) || location.protocol === 'file:' || !!window.Capacitor || !!window.cordova;
+    if (isWebView) document.documentElement.classList.add('apk');
+
+    function setAppHeight(){
+      var h = (window.visualViewport && window.visualViewport.height) || window.innerHeight || document.documentElement.clientHeight;
+      document.documentElement.style.setProperty('--app-h', Math.round(h) + 'px');
+    }
+    setAppHeight();
+    window.addEventListener('resize', setAppHeight);
+    window.addEventListener('orientationchange', function(){ setTimeout(setAppHeight, 200); });
+    window.addEventListener('load', function(){ setAppHeight(); setTimeout(setAppHeight, 300); });
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', setAppHeight);
+
+    var SCREENS = ['splashScreen','customizationScreen','goalsScreen','settingsScreen','journeyScreen','appSettingsScreen','createGoalScreen','goalBoxesScreen'];
+    function currentScreen(){
+      for (var i=0;i<SCREENS.length;i++){
+        var el = document.getElementById(SCREENS[i]);
+        if (el && !el.classList.contains('screen-hidden')) return SCREENS[i];
+      }
+      return null;
+    }
+    function call(name){ try { if (typeof window[name] === 'function') { window[name](); return true; } } catch(e){} return false; }
+
+    function closeTopModal(){
+      var open = Array.prototype.slice.call(document.querySelectorAll('.settings-modal-backdrop.show,.boxes-modal-backdrop.show'));
+      if (!open.length) return false;
+      var top = open[open.length-1];
+      var settingsOnes = open.filter(function(m){ return m.classList.contains('settings-modal-backdrop'); });
+      if (settingsOnes.length) top = settingsOnes[settingsOnes.length-1];
+      top.click(); /* usa a própria regra de fechar de cada modal */
+      if (top.classList.contains('show')) { top.classList.remove('show'); top.setAttribute('aria-hidden','true'); }
+      if (!currentScreen()) {
+        var s = document.getElementById('splashScreen'); if (s) s.classList.remove('screen-hidden');
+        if (typeof updateMainNav === 'function') updateMainNav(null);
+      }
+      return true;
+    }
+
+    /* devolve true se tratou o "voltar" dentro do app; false se está na tela inicial */
+    function handleBack(){
+      if (closeTopModal()) return true;
+      switch (currentScreen()){
+        case 'createGoalScreen':   backToGoalsFromCreate(); return true;
+        case 'goalBoxesScreen':    backToGoalsFromBoxes(); return true;
+        case 'appSettingsScreen':  backToMeuEspaco(); return true;
+        case 'journeyScreen':      backToMeuEspacoFromJourney(); return true;
+        case 'settingsScreen':     navigateToGoals(); return true;
+        case 'customizationScreen':
+          try {
+            var st = getCaixinhasStore();
+            if (st && st.profiles && st.profiles.length && st.activeProfileId) { isCreatingNewProfile = false; navigateToGoals(); return true; }
+          } catch(e){}
+          document.getElementById('customizationScreen').classList.add('screen-hidden');
+          document.getElementById('splashScreen').classList.remove('screen-hidden');
+          if (typeof updateMainNav === 'function') updateMainNav(null);
+          document.body.classList.remove('goals-mode');
+          return true;
+        default: return false; /* splash ou Metas = raiz */
+      }
+    }
+    window.caixinhasBack = handleBack;
+    window.onBackPressed = function(){ return handleBack(); };
+
+    var armed = false, armTimer = null;
+    function hint(){ try { if (typeof showGoalsPlaceholder === 'function') showGoalsPlaceholder('Aperte voltar de novo para sair'); } catch(e){} }
+
+    var cap = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App;
+    if (cap && cap.addListener) {
+      /* Capacitor: o plugin App cuida do botão voltar */
+      cap.addListener('backButton', function(){
+        if (handleBack()) return;
+        if (armed) { cap.exitApp(); return; }
+        armed = true; hint(); clearTimeout(armTimer); armTimer = setTimeout(function(){ armed = false; }, 2000);
+      });
+    } else {
+      /* WebView comum / navegador: usa o histórico como "entrada sentinela" */
+      function pushSentinel(){ try { history.pushState({caixinhas:'app'}, '', location.href); } catch(e){} }
+      try { history.replaceState({caixinhas:'base'}, '', location.href); } catch(e){}
+      pushSentinel();
+      window.addEventListener('popstate', function(){
+        if (handleBack()) { pushSentinel(); return; }
+        /* raiz: avisa; um segundo "voltar" em até 2s sai do app naturalmente */
+        hint();
+        clearTimeout(armTimer);
+        armTimer = setTimeout(pushSentinel, 2000);
+      });
+    }
+  })();
   </script>
 </body>
 </html>
